@@ -1,4 +1,4 @@
-/*
+
 import React, { Component } from "react";
 
 class Callback extends Component {
@@ -11,6 +11,7 @@ class Callback extends Component {
       throw new Error("Invalid callback URL.");
     }
   };
+  
   render() {
     return <h1>Loading...</h1>;
   }
@@ -18,4 +19,3 @@ class Callback extends Component {
 }
 
 export default Callback;
-*/

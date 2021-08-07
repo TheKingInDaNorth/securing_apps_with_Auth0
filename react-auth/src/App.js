@@ -21,8 +21,11 @@ class App extends Component {
             exact
             render={props => <Home auth={this.auth} {...props} />}
           />
-        
-          
+          <Route
+            path="/callback"
+            exact
+            render={props => <Callback auth={this.auth} {...props} />}
+          />    
           <Route path="/profile" component={Profile} />
         </div>
       </>
