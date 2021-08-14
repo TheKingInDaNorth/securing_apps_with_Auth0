@@ -13,8 +13,8 @@ const checkJwt = jwt({
         }/.well-known/jwks.json`
     }),
 
-    audience = process.env.REACT_APP_AUTH0_AUDIENCE,
-    issuer = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/`,
+    audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+    issuer: `https://${process.env.REACT_APP_AUTH0_DOMAIN}/`,
 
     algorithms: ["RS256"]
 });
