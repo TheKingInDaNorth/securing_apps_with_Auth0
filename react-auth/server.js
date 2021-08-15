@@ -10,7 +10,7 @@ const checkJwt = jwt({
         jwksRequestsPerMinute: 5,
         jwksUri: `https://${
             process.env.REACT_APP_AUTH0_DOMAIN
-        }/.well-known/jwks.json`
+            }/.well-known/jwks.json`
     }),
 
     audience: process.env.REACT_APP_AUTH0_AUDIENCE,
@@ -23,6 +23,12 @@ const app = express();
 app.get('/public', function(req, res) {
     res.json({
         message: "Hello from a public API!"
+    });
+});
+
+app.get('/private', checkJwt, function(req, res) {
+    res.json({
+        message: "Hello from a private API!"
     });
 });
 
