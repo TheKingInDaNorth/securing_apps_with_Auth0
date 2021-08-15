@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Private extends Component {
     state = {
         message: ""
-    }
+    };
 
     componentDidMount(){
         fetch("/private", {
