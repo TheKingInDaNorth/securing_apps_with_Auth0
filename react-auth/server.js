@@ -1,7 +1,8 @@
-const express = require('express');
-require('dotenv').config();
-const jwt = require("express-jwt");
-const jwksRsa = require("jwks-rsa");
+const express = require("express");
+require("dotenv").config();
+const jwt = require("express-jwt"); // Validate JWT and set req.user
+const jwksRsa = require("jwks-rsa"); // Retrieve RSA keys from a JSON Web Key set (JWKS) endpoint
+const checkScope = require("express-jwt-authz");
 
 const checkJwt = jwt({
   // Dynamically provide a signing key based on the kid in the header
@@ -24,16 +25,26 @@ const checkJwt = jwt({
 });
 
 const app = express();
-app.get('/public', function(req, res) {
-    res.json({
-        message: "Hello from a public API!"
-    });
+
+app.get("/public", function(req, res) {
+  res.json({
+    message: "Hello from a public API!"
+  });
 });
 
-app.get('/private', checkJwt, function(req, res) {
-    res.json({
-        message: "Hello from a private API!"
-    });
+app.get("/private", checkJwt, function(req, res) {
+  res.json({
+    message: "Hello from a private API!"
+  });
+});
+
+app.get("/course", checkJwt, checkScope(["read:courses"]), function(req, res) {
+  res.json({
+    courses: [
+      { id: 1, title: "Building Apps with React adn Redux"},
+      { id: 2, title: "Creating Reusable React Components"}
+    ]
+  });
 });
 
 app.listen(3001);
