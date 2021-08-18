@@ -73,9 +73,9 @@ export default class Auth {
   };
 
   getProfile = cb => {
-    if(this.userProfile) return cb(this.userProfile);
-    this.auth0.client.userInfo(this.getAccesToken(), (err, profile) => {
-      if(profile) this.userProfile = profile;
+    if (this.userProfile) return cb(this.userProfile);
+    this.auth0.client.userInfo(this.getAccessToken(), (err, profile) => {
+      if (profile) this.userProfile = profile;
       cb(profile, err);
     });
   };
